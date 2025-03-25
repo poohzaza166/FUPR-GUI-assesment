@@ -10,7 +10,11 @@ public class FileIO {
 
     private static Object fileData;
 
-
+    /**
+     * @param fileName
+     * this function take in file name input and return a arraylist of Intger
+     * @return ArrayList<Integer>
+     */
     public static ArrayList<Integer> readDataFromFile(String fileName) {
         ArrayList<Integer> obj = new ArrayList<>();
         try {
@@ -26,20 +30,6 @@ public class FileIO {
         fileData = obj;
         return obj;
     }
-//    public static void main(String[] args) {
-//        String fileName = "/home/pooh/Docrewruments/sussex/furtherprogramming/le-gui-assesmentv2electric-bongaloo/Assets/test.txt"; // Ensure this file exists with integer values
-//
-//        ArrayList<Integer> numbers = FileIO.readDataFromFile(fileName);
-//
-//        if (numbers.isEmpty()) {
-//            System.out.println("No data read from the file or the file does not exist.");
-//        } else {
-//            System.out.println("Numbers read from the file:");
-//            for (int num : numbers) {
-//                System.out.println(num);
-//            }
-//        }
-//    }
 
 }
 

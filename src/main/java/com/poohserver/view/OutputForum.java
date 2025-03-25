@@ -10,19 +10,32 @@ public class OutputForum extends JPanel {
     private JButton optionA;
     private JButton optionB;
     private JLabel image;
+    private JLabel correctSpellinglable;
 
     // Internal reference to the text.
     private String textMessage;
 
-    public OutputForum(String text, ActionListener e) {
+    public OutputForum(String text, ActionListener e, String correctspelling) {
         this.textMessage = text;
+        // Set a kid-friendly pastel background color.
+        setBackground(new Color(173, 216, 230)); // Light blue
+
+        // Create and style the label.
         this.label = new JLabel(this.textMessage, SwingConstants.CENTER);
-        this.optionA = new JButton("exit");
-        this.optionB = new JButton("try again");
+        this.label.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+        this.label.setForeground(new Color(255, 105, 180)); // Hot pink
+
+        // Create and style the buttons.
+        this.optionA = new JButton("Exit");
+        this.optionB = new JButton("Try Again");
+        styleButton(optionA);
+        styleButton(optionB);
+
+        // Set up the image label.
         this.image = new JLabel("", SwingConstants.CENTER);
 
-        // Set the panel layout to BorderLayout.
-        setLayout(new BorderLayout());
+        // Set the panel layout to BorderLayout with gaps.
+        setLayout(new BorderLayout(10, 10));
 
         // Add the label at the top.
         add(label, BorderLayout.NORTH);
@@ -31,17 +44,28 @@ public class OutputForum extends JPanel {
         add(image, BorderLayout.CENTER);
 
         // Create a panel for the buttons.
-        JPanel buttonPanel = new JPanel(new BorderLayout());
+        JPanel buttonPanel = new JPanel(new BorderLayout(10, 10));
+        buttonPanel.setBackground(new Color(173, 216, 230)); // Match background
+
         // Add optionA to the west and optionB to the east.
         buttonPanel.add(optionA, BorderLayout.WEST);
         buttonPanel.add(optionB, BorderLayout.EAST);
+
         // Add the button panel to the bottom.
         add(buttonPanel, BorderLayout.SOUTH);
 
         // Attach action listeners.
         this.optionA.addActionListener(this::exitProgram);
-        // Optionally, add an action listener to optionB if needed.
-         this.optionB.addActionListener(e);
+        this.optionB.addActionListener(e);
+    }
+
+    // Helper method to style buttons.
+    private void styleButton(JButton button) {
+        button.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+        button.setBackground(new Color(255, 182, 193)); // Light pink
+        button.setForeground(Color.DARK_GRAY);
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createRaisedBevelBorder());
     }
 
     public void setIcon(String imagePath) {
@@ -68,16 +92,4 @@ public class OutputForum extends JPanel {
         this.revalidate();
         this.repaint();
     }
-
-    // Test method
-//    public static void main(String[] args) {
-//        OutputForum outputForum = new OutputForum("Hello World");
-//        outputForum.setIcon("/home/pooh/Documents/sussex/furtherprogramming/le-gui-assesmentv2electric-bongaloo/Assets/__shiroko_blue_archive_drawn_by_harada_sansei_rain__6f87fa92a477f19799faee8ed6d5758c.png");
-//
-//        JFrame frame = new JFrame("OutputForum");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(400, 400);
-//        frame.add(outputForum);
-//        frame.setVisible(true);
-//    }
 }

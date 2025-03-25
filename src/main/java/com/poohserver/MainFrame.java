@@ -1,5 +1,6 @@
 package com.poohserver;
 
+import com.poohserver.model.NumberToWords;
 import com.poohserver.model.SpellChecker;
 import com.poohserver.view.InputForum;
 import com.poohserver.view.OutputForum;
@@ -24,13 +25,13 @@ public class MainFrame extends JFrame {
         spellChecker.setRandomSelect();
         System.out.println(this.spellChecker.getRandomSelect());
         setTitle("Main Application");
-        setSize(800, 600);
+        setSize(800, 400);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Handle closing manually
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
         inputForum = new InputForum("please spell out " + this.spellChecker.getRandomSelect(),this::windowSwitcher);
-        outputForum = new OutputForum("", this::windowSwitcher);
+        outputForum = new OutputForum("", this::windowSwitcher, "");
 
         mainPanel.add(inputForum, "INPUT_FORUM");
         mainPanel.add(outputForum, "ANOTHER_DISPLAY");
@@ -38,12 +39,9 @@ public class MainFrame extends JFrame {
         switchButton = new JButton("Switch Display");
         switchButton.addActionListener(this::windowSwitcher);
 
-//        JPanel buttonPanel = new JPanel();
-//        buttonPanel.add(switchButton);
 
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(mainPanel, BorderLayout.CENTER);
-//        getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 
         // Set the initial display
         cardLayout.show(mainPanel, "INPUT_FORUM");
@@ -75,14 +73,14 @@ public class MainFrame extends JFrame {
              this.outputForum.setIcon("/home/pooh/Documents/sussex/furtherprogramming/le-gui-assesmentv2electric-bongaloo/Assets/yes.png");
             }
             else {
-                this.outputForum.setTextMessage("wrong");
+                this.outputForum.setTextMessage("WRONG The CorrectSpelling is: " + NumberToWords.numberToWords(this.spellChecker.getRandomSelect()));
                 this.outputForum.setIcon("/home/pooh/Documents/sussex/furtherprogramming/le-gui-assesmentv2electric-bongaloo/Assets/no.png");
             }
             isInputForumVisible = false;
         } else {
             this.spellChecker.setRandomSelect();
             System.out.println(this.spellChecker.getRandomSelect());
-            this.inputForum.setLableText("please spell out " + this.spellChecker.getRandomSelect());
+            this.inputForum.setLabelText("please spell out " + this.spellChecker.getRandomSelect());
             cardLayout.show(mainPanel, "INPUT_FORUM");
             isInputForumVisible = true;
         }

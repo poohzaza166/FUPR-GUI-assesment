@@ -6,8 +6,9 @@ import java.util.Map;
 public class NumberToWords {
     private static final Map<Integer, String> numberMap = new HashMap<>();
     private static final Map<String, Integer> wordMap = new HashMap<>();  // Reversed map
-
+    // static dict for int to string conversation table
     static {
+        numberMap.put(0, "zero");
         numberMap.put(1, "one");
         numberMap.put(2, "two");
         numberMap.put(3, "three");
@@ -34,11 +35,20 @@ public class NumberToWords {
             wordMap.put(entry.getValue(), entry.getKey());
         }
     }
-
+    /**
+     * @param num
+     * this function take number and convert it to correct number spelling
+     * @return String
+     */
     public static String numberToWords(int num) {
         return numberMap.getOrDefault(num, "Invalid number");
     }
 
+    /**
+     * this function take in String and check if the word is in the dict if not return -1
+     * @param word
+     * @return intger status
+     */
     public static int wordsToNumber(String word) {
         return wordMap.getOrDefault(word.toLowerCase(), -1);  // Return -1 if word not found
     }

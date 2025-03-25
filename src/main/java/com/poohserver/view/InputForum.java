@@ -1,30 +1,54 @@
 package com.poohserver.view;
 
 import javax.swing.*;
-import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
 public class InputForum extends JPanel {
-    // defineing all of the iput forum element
     private JButton nextButton;
     private JTextField textInput;
-    private JLabel lable;
+    private JLabel label;
     private String text;
-    private String lableText;
+    private String labelText;
+
     public InputForum(String startingText, ActionListener listener){
-        setLayout(new BorderLayout());
-        this.lableText = startingText;
-        this.textInput = new JTextField();
-        this.lable = new JLabel(this.lableText);
-        this.nextButton = new JButton("subbmit");
-        this.nextButton.addActionListener(listener);
+        // Set layout with horizontal and vertical gaps
+        setLayout(new BorderLayout(10, 10));
+
+        // Set a kid-friendly pastel background color
+        setBackground(new Color(173, 216, 230)); // Light blue
+
+        this.labelText = startingText;
+
+        // Create and style the label
+        label = new JLabel(this.labelText, SwingConstants.CENTER);
+        label.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+        label.setForeground(new Color(255, 105, 180)); // Hot pink
+
+        // Create and style the text field
+        textInput = new JTextField();
+        textInput.setSize(30,40);
+        textInput.setFont(new Font("Comic Sans MS", Font.PLAIN, 68));
+        textInput.setBackground(Color.WHITE);
+        textInput.setForeground(Color.BLACK);
+        textInput.setBorder(BorderFactory.createLineBorder(new Color(255, 105, 180), 2));
+
+        // Create and style the button
+        nextButton = new JButton("Submit");
+        nextButton.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+        nextButton.setBackground(new Color(255, 182, 193)); // Light pink
+        nextButton.setForeground(Color.DARK_GRAY);
+        nextButton.addActionListener(listener);
+        nextButton.setFocusPainted(false);
+        nextButton.setBorder(BorderFactory.createRaisedBevelBorder());
+
+        // Add components to the panel
+        add(label, BorderLayout.NORTH);
         add(textInput, BorderLayout.CENTER);
-        add(lable, BorderLayout.NORTH);
         add(nextButton, BorderLayout.EAST);
-        setSize(600,800);
+
+        // Increase the preferred size to make it more accessible
+        setPreferredSize(new Dimension(600, 100));
     }
 
     public String getText(){
@@ -32,31 +56,10 @@ public class InputForum extends JPanel {
         return this.text;
     }
 
-    public void setLableText(String text){
-        this.lableText = text;
-        this.lable.setText(this.lableText);
-        this.revalidate();
-        this.repaint();
+    public void setLabelText(String text){
+        this.labelText = text;
+        this.label.setText(this.labelText);
+        revalidate();
+        repaint();
     }
-    private static void exit_program(WindowEvent e){
-        System.exit(0);
-    }
-
-    // test method
-//    public static void main(String[] args){
-//        InputForum forum = new InputForum();
-//        forum.setVisible(true);
-//        forum.addWindowListener(new WindowAdapter() {
-//            @Override
-//            public void windowClosing(WindowEvent e) {
-//                int choice = JOptionPane.showConfirmDialog(
-//                        forum, "Are you sure you want to exit?", "Exit Confirmation",
-//                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-//
-//                if (choice == JOptionPane.YES_OPTION) {
-//                    System.exit(0);
-//                }
-//            }
-//        });
-//    }
 }

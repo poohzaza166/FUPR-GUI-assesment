@@ -15,7 +15,12 @@ public class OutputForum extends JPanel {
     // Internal reference to the text.
     private String textMessage;
 
-    public OutputForum(String text, ActionListener e, String correctspelling) {
+    /**
+     * this is a cponstructor method for the OutputFourm
+     * @param text this is a inital text message for the output forum
+     * @param e Action Listenner
+     */
+    public OutputForum(String text, ActionListener e) {
         this.textMessage = text;
         // Set a kid-friendly pastel background color.
         setBackground(new Color(173, 216, 230)); // Light blue
@@ -68,6 +73,10 @@ public class OutputForum extends JPanel {
         button.setBorder(BorderFactory.createRaisedBevelBorder());
     }
 
+    /**
+     * icon setter method
+     * @param imagePath take the image path in
+     */
     public void setIcon(String imagePath) {
         ImageIcon icon = new ImageIcon(imagePath);
         Image scaledImage = icon.getImage();
@@ -82,10 +91,18 @@ public class OutputForum extends JPanel {
         System.exit(0);
     }
 
+    /**
+     * getter method
+     * @return Current text message String
+     */
     public String getTextMessage() {
         return textMessage;
     }
 
+    /**
+     * settter function and repaint the lable
+     * @param textMessage
+     */
     public void setTextMessage(String textMessage) {
         this.textMessage = textMessage;
         this.label.setText(textMessage);

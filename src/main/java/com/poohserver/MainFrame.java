@@ -20,6 +20,9 @@ public class MainFrame extends JFrame {
     private SpellChecker spellChecker;
     private boolean isInputForumVisible = true; // Track the currently visible panel
 
+    /**
+     * main frame constructor
+     */
     public MainFrame() {
         spellChecker = new SpellChecker("/home/pooh/Documents/sussex/furtherprogramming/le-gui-assesmentv2electric-bongaloo/Assets/test.txt");
         spellChecker.setRandomSelect();
@@ -31,7 +34,7 @@ public class MainFrame extends JFrame {
         mainPanel = new JPanel(cardLayout);
 
         inputForum = new InputForum("please spell out " + this.spellChecker.getRandomSelect(),this::windowSwitcher);
-        outputForum = new OutputForum("", this::windowSwitcher, "");
+        outputForum = new OutputForum("", this::windowSwitcher);
 
         mainPanel.add(inputForum, "INPUT_FORUM");
         mainPanel.add(outputForum, "ANOTHER_DISPLAY");
@@ -62,6 +65,10 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * this is a window switcher function and it also partially contorl the main program flow logic
+     * @param e ActionEvent
+     */
     private void windowSwitcher(ActionEvent e){
         if (isInputForumVisible) {
             cardLayout.show(mainPanel, "ANOTHER_DISPLAY");
@@ -85,7 +92,7 @@ public class MainFrame extends JFrame {
             isInputForumVisible = true;
         }
     }
-
+    // main entry point of the program
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {

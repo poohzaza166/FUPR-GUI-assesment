@@ -50,6 +50,6 @@ public class NumberToWords {
      * @return intger status
      */
     public static int wordsToNumber(String word) {
-        return wordMap.getOrDefault(word.toLowerCase(), -1);  // Return -1 if word not found
+        return wordMap.getOrDefault(word.toLowerCase().trim(), -1);  // Return -1 if word not found
     }
 }
